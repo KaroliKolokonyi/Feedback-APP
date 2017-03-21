@@ -1,0 +1,11 @@
+<h1> Hi <%""%> <%= current_user.First_name%></h1>
+
+<%= form_tag "/submisions", method: :post do %>
+  <div> New Submision: <textarea name="textarea"
+   rows="10" cols="50"></textarea>
+
+
+  <div> Submsion Date:<input type="date" name="submision date"></div>
+  <div><input type="submit" name="Submit">
+  </div>
+<% end %>

@@ -1,0 +1,36 @@
+
+<h2> Hi <% " " %><%= current_user.First_name %></h2>
+
+ 
+    <h1>Submision: </h1> <%= @submision.submision %>
+     <h1></h1>submision Time:<%= @submision.submision_time %>
+     <% if  @submision.feedback %>
+     <p><%=@submision.feedback.feedback%></p>
+     <% end %>
+
+
+ 
+
+<%if current_user.reviewee == false && @submision.graded == false %> 
+  <% unless @submision.feedback %>
+      <%= form_tag "/feedbacks", method: :post do %>
+
+         <textarea style="width: 300px;" name="feedback"></textarea>
+         <input type="hidden" name="user_id" value="<%= current_user.id%>">
+         <input type="hidden" name="submision_id" value="<%= @submision.id%>">
+         <button type="submit"> Add Feedback</button>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+      <%= form_tag "/comments", method: :post do %>
+
+         <textarea style="width: 300px;" name="comment"></textarea>
+         <input type="hidden" name="user_id" value="<%= current_user.id%>">
+         <input type="hidden" name="submision_id" value="<%= @submision.id%>">
+         <button type="submit"> Add Feedback</button>
+  
+      <% end %>
+
+
