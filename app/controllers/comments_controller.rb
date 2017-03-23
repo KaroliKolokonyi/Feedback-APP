@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+before_action :authenticate_user
 
 
   def show
@@ -12,13 +12,14 @@ class CommentsController < ApplicationController
 
   def create
     user_id = current_user.id
-    submision_id = params[:submision_id]
+    feedback_id = params[:feedback_id]
     comment = params[:comment]
 
     
-    comment = Comment.new({submision_id: submision_id, user_id: user_id, comment: comment})
+    comment = Comment.new(feedback_id: feedback_id, user_id: user_id, comment: comment)
     comment.save
-    redirect_to "/submisions/#{submission.id}"
+    
+    redirect_to :back
   end
 
 end

@@ -3,9 +3,18 @@
 
  
     <h1>Submision: </h1> <%= @submision.submision %>
-     <h1></h1>submision Time:<%= @submision.submision_time %>
+  
      <% if  @submision.feedback %>
-     <p><%=@submision.feedback.feedback%></p>
+      <p>Feedback: <%=@submision.feedback.feedback%></p>
+
+     <% @submision.feedback.comments.each do |comment| %>
+        <p><%= comment.user.First_name %> : <%=comment.comment %></p>
+     <% end %>
+       <%= form_tag "/comments" do%>
+         <textarea style="width: 200px;" name="comment"></textarea><br>
+         <input type="hidden" name="feedback_id" value="<%= @submision.feedback.id %>">
+         <button type="submit"><small>Comment</small></button>
+       <% end %>
      <% end %>
 
 
@@ -14,8 +23,7 @@
 <%if current_user.reviewee == false && @submision.graded == false %> 
   <% unless @submision.feedback %>
       <%= form_tag "/feedbacks", method: :post do %>
-
-         <textarea style="width: 300px;" name="feedback"></textarea>
+         <textarea style="width: 300px;" name="feedback"></textarea><br>
          <input type="hidden" name="user_id" value="<%= current_user.id%>">
          <input type="hidden" name="submision_id" value="<%= @submision.id%>">
          <button type="submit"> Add Feedback</button>
@@ -24,13 +32,7 @@
   <% end %>
 
 
-      <%= form_tag "/comments", method: :post do %>
-
-         <textarea style="width: 300px;" name="comment"></textarea>
-         <input type="hidden" name="user_id" value="<%= current_user.id%>">
-         <input type="hidden" name="submision_id" value="<%= @submision.id%>">
-         <button type="submit"> Add Feedback</button>
+       
   
-      <% end %>
 
 

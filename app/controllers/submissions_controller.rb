@@ -1,47 +1,40 @@
 class SubmissionsController < ApplicationController
-
+before_action :authenticate_user
 def index
-  @submisions = Submision.all.order(:submision_time)
+  if current_user.reviewee == true
+    if  params[:submision_time] 
+      @submisions = current_user.submisions.all.order(created_at: params[:submision_time])
+    else 
+      @submisions = current_user.submisions.all
+    end
+  else
+  @submisions = Submision.all
   @users = User.all 
-  @feedbacks = Feedback.all 
-  # if params[:sort]@@
-  #     @submisions = submision.all.order(submision_time: params[:submision_time])
-  #  @ elsif params[:filter] == "discount"
-  #     @submisions = submision.discounted_submisions
-  #   elsif params[:category]
-  #       @submisions =  Category.find_by(name: params[:category]).submisions
-  #   else
-  #     @submisions = Submision.all
-  #   end
-
+  end
    return "index.html"
-  end 
+end 
 
 def show
     @submision = Submision.find_by(id: params[:id])
     @feedback = Feedback.find_by(id: params[:id])
+    @comment = Comment.find_by(id: params[:id])
     
-  end
+end
 
  def new
     unless current_user
-      flash[:message] = "Only signed in users can submit!"
       redirect_to "/signup"
     end
-  end
+end
 
   def create
     user_id = current_user.id
     submision = params[:submision]
-    submision_time = params[:submision_time]
-
     
-    submision = Submision.new({submision: submision, user_id: user_id, submision_time: submision_time})
+    submision = Submision.new(submision: submision, user_id: user_id )
 
     submision.save
-
-    flash[:success] = "Submision Made"
-    redirect_to "/submisions/#{submission.id}"
+    redirect_to "/submisions/#{submision.id}"
   end
 
 
