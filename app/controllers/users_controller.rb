@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, only: [:index]
 
 def  index 
    @users = User.all 
@@ -29,9 +29,8 @@ def new
       redirect_to '/'
     else
       flash[:warning] = 'Invalid email or password!'
-      redirect_to '/signup'
+      redirect_to '/login'
     end
   end
-
   
 end

@@ -1,17 +1,26 @@
 
-<br><strong>LogIn</strong><br>
-
 <%= form_tag "/login", method: :post do %>
-  <div>
-    Email:
-    <input type="Email" name="Email">
-  </div>
+  <form class="form-horizontal">
+    <fieldset>
+      <legend> </legend>
+      <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control" name="email" id="inputPassword"  placeholder="Email"><br>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+        <div class="col-lg-10">
+          <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+         <div class="col-lg-10 col-lg-offset-2">
+           <button type="submit" value="Login" class="btn btn-primary">LogIn</button>
+         </div>
+      </div>
 
-  <div>
-    Password:
-    <input type="password" name="password">
-  </div>
-
-  <input type="submit" value="LogIn">
-
+    </fieldset>
+  </form>
 <% end %>

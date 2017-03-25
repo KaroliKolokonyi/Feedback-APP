@@ -1,39 +1,32 @@
+<body>
+   <div class="heading"><h1>Submissions</h1></div>
+   <div class="row"><% if current_user.reviewee == true %><a href="/submisions/new">Create New Submision</a>
+      <%@submisions.each_slice(3) do |three_submisions| %>
+        <div class="row">
+            <% three_submisions.each do |submision| %>
+              <div class="col-md-4" >
+                  <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
+                  <h2>Submision Time: <%= submision.created_at.strftime("%m-%d-%Y") %></h2>
+                  <h2>Graded: <%= submision.graded%></h2>    
+                </div>
+            <% end %>
+           </div>
+        </div>
+      <% end %>
 
-<h1>All Submisions</h1>
-
-<div class="row">
-<% if current_user.reviewee == true %><a href="/submisions/new">Create New Submision</a>
-
-  <%@submisions.each_slice(3) do |three_submisions| %>
-    <div class="row">
-        <% three_submisions.each do |submision| %>
-          <div class="col-md-4" >
-            <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
-            <h2>Submision Time: <%= submision.created_at.strftime("%m-%d-%Y") %></h2>
-            <h2>Graded: <%= submision.graded%></h2>    
-          </div>
-
-        <% end %>
-    </div>
-  <% end %>
-
-  <% else current_user.reviewee == false%>
-    <%@submisions.each_slice(3) do |three_submisions| %>
-
-      <div class="row">
-        <% three_submisions.each do |submision| %>
-          <div class="col-md-4" >
-            <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
-            <h4>Submision Time: <%= submision.created_at.strftime("%m-%d-%Y") %></h4>
-            <h4>Graded: <%= submision.graded%></h4>
-          
-          </div>
-
+      <% else current_user.reviewee == false%>
+        <%@submisions.each_slice(3) do |three_submisions| %>
+          <div class="row">
+            <% three_submisions.each do |submision| %>
+                <div class="col-md-4" >
+                   <div class="well">
+                        <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
+                        <h4>Submision Time: <%= submision.created_at.strftime("%m-%d-%Y") %></h4>
+                        <h4>Graded: <%= submision.graded%></h4>
+                    </div>
+                </div>
+              <% end %>
            <% end %>
-
-            </div>
        <% end %>
-
-   <% end %>
-
-</div>
+    </div>
+</body>

@@ -1,9 +1,17 @@
 <h1> Hi <%""%> <%= current_user.First_name%></h1>
 
 <%= form_tag "/submisions", method: :post do %>
-  <div> New Submision: <textarea name="submision"
-   rows="10" cols="50"></textarea>
-  <div><input type="submit" name="Submit">
+
+   <div class="form-group">
+    <label for="textArea" class="col-lg-2 control-label"></label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea" name="submision" style="width: 1000px;"></textarea>
+      </div>
   </div>
+ <div class="form-group">
+     <div class="col-lg-10 col-lg-offset-2">
+      <button type="submit" class="btn btn-primary">Add Submision</button> 
+     </div>
+ </div>
 <% end %>
 

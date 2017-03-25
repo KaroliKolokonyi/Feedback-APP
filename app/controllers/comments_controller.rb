@@ -22,4 +22,19 @@ before_action :authenticate_user
     redirect_to :back
   end
 
+def edit
+    @comment = comment.find_by(id: params[:id])
+  end
+
+  def update
+    comment = comment.find_by(id: params[:id])
+    comment.comment = params[:comment]
+    feedback_id = params[:feedback_id]
+    user_id = params[:user_id]
+  
+    comment.save
+    flash[:success] = "Comment Updated"
+    redirect_to :back
+  end
+
 end

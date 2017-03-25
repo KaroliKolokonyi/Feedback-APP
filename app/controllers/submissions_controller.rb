@@ -37,5 +37,18 @@ end
     redirect_to "/submisions/#{submision.id}"
   end
 
+  def edit
+    @submision = submision.find_by(id: params[:id])
+  end
+
+  def update
+    submision = submision.find_by(id: params[:id])
+    submision.submision = params[:submision]
+    submision.user_id = params[:user_id]
+
+    submision.save
+    flash[:success] = "Submision Updated"
+    redirect_to "/submisions/#{submision.id}"
+  end
 
 end
