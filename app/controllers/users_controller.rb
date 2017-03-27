@@ -26,7 +26,7 @@ def new
     if user.save
       session[:user_id] = user.id
       flash[:success] = 'Successfully Created Account!'
-      redirect_to '/'
+      redirect_to '/submisions'
     else
       flash[:warning] = 'Invalid email or password!'
       redirect_to '/login'
