@@ -6,7 +6,7 @@
             <% three_submisions.each do |submision| %>
               <div class="col-md-4" >
                  <div class="well">
-                  <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
+                  <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= raw(submision.submision) %>
                   <h4>Submision Time:</h4> <%= submision.created_at.strftime("%m-%d-%Y") %>
                   <h4>Graded: </h4><%= submision.graded%>  
                 </div>
@@ -22,14 +22,14 @@
             <% three_submisions.each do |submision| %>
                 <div class="col-md-4" >
                    <div class="well">
-                        <h2><%= link_to submision.user.First_name, "/submisions/#{submision.id}" %></h2><%= submision.submision %>
-                        <h4>Submision Time: <%= submision.created_at.strftime("%m-%d-%Y") %></h4>
+                        <h2><%= link_to submision.user.First_name.capitalize, "/submisions/#{submision.id}" %></h2><%= raw(submision.submision) %>
+                        <h4>Submision Time: &nbsp <small><%= submision.created_at.strftime("%m-%d-%Y") %></small></h4>
                         <h4>Status:</h4><% if submision.graded == false %>
                             <h6> Not Graded </h6>
 
-                            <% else %> 
+                           <% else %> 
 
-                          <h6> Graded </h6>
+                             <h6> Graded</h6>
 
                           <%end%>
 

@@ -22,6 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+
           <a class="navbar-brand" href="/submisions">All Submisions</a>
         </div>
 
@@ -33,14 +34,11 @@
 
             <%end %>
 
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Submission Filters<span class="caret"></span></a>
+            <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Submission Filters<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/submisions">All submisions</a></li>
-                <li><a href="/submisions?submision_time=DESC">Sort By Latest Submision<span class="sr-only">(current)</span></a></li>
-                <li><a href="/submisions?graded=false">Sort By Submision Status <span class="sr-only">(current)</span></a></li>
-
-                
-
+                <li><a href="/submisions?sort=ASC">Latest Submision<span class="sr-only">(current)</span></a></li>
+                <li><a href="/submisions?sort=false">Submision Status <span class="sr-only">(current)</span></a></li>
               </ul>
             </li>
           </ul>
@@ -66,3 +64,4 @@
     </div>
   </body>
 </html>
+

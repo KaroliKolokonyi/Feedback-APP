@@ -2,16 +2,16 @@
 <h2> Hi <% " " %><%= current_user.First_name %></h2>
 
    <div class="well">
-     <h1>Submision: </h1> <%= @submision.submision %>
+     <h1>Submision: </h1> <%= raw(@submision.submision) %>
    </div>
      <% if  @submision.feedback %>
         <div class="well">
-       <h2>Feedback:</h2><p><%=@submision.feedback.feedback%></p>
+       <h4>Feedback: &nbsp <small><%=@submision.feedback.feedback%></small></h4>
         </div>
      <% @submision.feedback.comments.each do |comment| %>
        <div class="well">
-         <h3><%= comment.user.First_name %> 's comment:</h3><%=comment.comment %>
-       </div>
+         <h4><b><%=comment.user.First_name.capitalize %></b> &nbsp <small><%=comment.comment %></small></h4>
+       </div> 
      <% end %>
        <%= form_tag "/comments" do%>
          <div class="form-group" style="red">
