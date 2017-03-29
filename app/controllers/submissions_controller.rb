@@ -27,7 +27,7 @@ end
 
 def show
     @submision = Submision.find_by(id: params[:id])
-    @feedback = Feedback.find_by(id: params[:id])
+    @feedback = @submision.feedback
     @comment = Comment.find_by(id: params[:id])
     
 end
@@ -45,20 +45,6 @@ end
     submision = Submision.new(submision: submision, user_id: user_id )
 
     submision.save
-    redirect_to "/submisions/#{submision.id}"
-  end
-
-  def edit
-    @submision = submision.find_by(id: params[:id])
-  end
-
-  def update
-    submision = submision.find_by(id: params[:id])
-    submision.submision = params[:submision]
-    submision.user_id = params[:user_id]
-
-    submision.save
-    flash[:success] = "Submision Updated"
     redirect_to "/submisions/#{submision.id}"
   end
 

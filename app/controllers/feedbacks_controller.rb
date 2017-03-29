@@ -20,17 +20,20 @@ before_action :authenticate_user
   end
 
   def edit
-    @feedback = feedback.find_by(id: params[:id])
+    @feedback = Feedback.find_by(id: params[:id])
+    @submision = @feedback.submision
+
   end
 
   def update
-    feedback = feedback.find_by(id: params[:id])
+    feedback = Feedback.find_by(id: params[:id])
+     @submision = feedback.submision
     feedback.feedback = params[:feedback]
     feedback.user_id = params[:user_id]
     submision_id = params[:submision_id]
   
     feedback.save
     flash[:success] = "feedback Updated"
-    redirect_to :back
+    redirect_to "/submisions/#{@submision.id}"
   end
 end

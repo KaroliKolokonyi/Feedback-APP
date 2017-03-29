@@ -1,0 +1,11 @@
+<h1> Edit Feedback</h1>
+
+<%= form_tag "/feedbacks/#{@feedback.id}", method: :patch do %>
+    <div class="form-group">
+      <input name="feedback" type="text" class="form-control" value="<%=@submision.feedback.feedback %>">
+    </div>
+      <input type="hidden" name="user_id" value="<%= current_user.id%>">
+      <input type="hidden" name="submision_id" value="<%= @submision.id%>">
+      <button type="submit" class="btn btn-primary"> Update Feedback</button>
+     
+<% end %>
